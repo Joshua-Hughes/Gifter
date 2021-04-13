@@ -57,5 +57,23 @@ namespace Gifter.Controllers
             _postRepository.Delete(id);
             return NoContent();
         }
+
+        [HttpGet("GetWithComments")]
+        public IActionResult GetWithComments()
+        {
+            var posts = _postRepository.GetAllWithComments();
+            return Ok(posts);
+        }
+
+        [HttpGet("GetByIdWithComments")]
+        public IActionResult GetByIWithComments(int id)
+        {
+            var post = _postRepository.GetByIdWithComments(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+        }
     }
 }
